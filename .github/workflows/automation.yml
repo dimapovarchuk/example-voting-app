@@ -35,7 +35,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
       # Publish to Docker Hub
-            - name: Check out the repo
+      - name: Check out the repo
         uses: actions/checkout@v2
       
       - name: Log in to Docker Hub
