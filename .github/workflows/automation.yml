@@ -34,17 +34,8 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-name: Publish Docker image
 
-on:
-  release:
-    types: [published]
-
-jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
-    steps:
+      #Run to Docker Hub
       - name: Check out the repo
         uses: actions/checkout@v2
       
