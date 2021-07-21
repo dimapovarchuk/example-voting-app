@@ -5,8 +5,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-steps:
-    
+  steps:
+  
       - name: Check Out Repo 
         uses: actions/checkout@v2
 
