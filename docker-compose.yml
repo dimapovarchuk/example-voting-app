@@ -4,7 +4,7 @@
 
 services:
   vote:
-    # image: linuxdima/vote
+    image: linuxdima/vote
     build: ./vote
     # use python rather than gunicorn for local dev
     command: python app.py
@@ -20,7 +20,7 @@ services:
       - back-tier
 
   result:
-    # image: linuxdima/result
+    image: linuxdima/result
     build: ./result
     # use nodemon rather than node for local dev
     command: nodemon server.js
@@ -37,7 +37,7 @@ services:
       - back-tier
 
   worker:
-    # image: linuxdima/worker
+    image: linuxdima/worker
     build:
       context: ./worker
     depends_on:
