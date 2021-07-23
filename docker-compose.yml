@@ -4,8 +4,8 @@
 
 services:
   vote:
-    image: linuxdima/vote
-    # build: ./vote
+    # image: linuxdima/vote
+    build: ./vote
     # use python rather than gunicorn for local dev
     command: python app.py
     depends_on:
@@ -20,8 +20,8 @@ services:
       - back-tier
 
   result:
-    image: linuxdima/result
-    # build: ./result
+    # image: linuxdima/result
+    build: ./result
     # use nodemon rather than node for local dev
     command: nodemon server.js
     depends_on:
@@ -37,9 +37,9 @@ services:
       - back-tier
 
   worker:
-    image: linuxdima/worker
-    # build:
-    #   context: ./worker
+    # image: linuxdima/worker
+    build:
+      context: ./worker
     depends_on:
       redis:
         condition: service_healthy 
