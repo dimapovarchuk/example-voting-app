@@ -4,7 +4,7 @@
 
 services:
   vote:
-    image: burynk/vote
+    image: linuxdima/vote
     # use python rather than gunicorn for local dev
     command: python app.py
     depends_on:
@@ -19,7 +19,7 @@ services:
       - back-tier
 
   result:
-    image: burynk/result
+    image: linuxdima/result
     # use nodemon rather than node for local dev
     command: nodemon server.js
     depends_on:
@@ -35,7 +35,7 @@ services:
       - back-tier
 
   worker:
-    image: burynk/worker
+    image: linuxdima/worker
     depends_on:
       redis:
         condition: service_healthy 
