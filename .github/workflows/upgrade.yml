@@ -1,0 +1,20 @@
+name: Upgrade to new version
+on: 
+  workflow_dispatch: 
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run the upgrade script
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: sudo ~/example-voting-app/upgrade.sh
+          host: ${{ secrets.HOST }}
+          username: ubuntu
+          privateKey: ${{ secrets.PRIVATE_KEY}}
+        env:
+          CI: true
