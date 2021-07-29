@@ -45,8 +45,7 @@ services:
       - back-tier
 
   worker:
-    build:
-      context: linuxdima/worker
+    image: linuxdima/worker
     depends_on:
       redis:
         condition: service_healthy 
