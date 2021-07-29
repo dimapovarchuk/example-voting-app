@@ -16,8 +16,10 @@ namespace Worker
         {
             try
             {
-                var pgsql = OpenDbConnection("Server=db;Username=postgres;Password=postgres;");
-                var redisConn = OpenRedisConnection("redis");
+                var pgsql_conn = string.Concat("Server=" + Environment.GetEnvironmentVariable("DB_HOST") + ";" + "Username=postgres;Password=postgres;");
+                var pgsql = OpenDbConnection(pgsql_conn);
+                //var pgsql = OpenDbConnection("Server=;Username=postgres;Password=postgres;");
+                var redisConn = OpenRedisConnection(Environment.GetEnvironmentVariable("REDIS_HOST"));
                 var redis = redisConn.GetDatabase();
 
                 // Keep alive is not implemented in Npgsql yet. This workaround was recommended:
@@ -46,7 +48,7 @@ namespace Worker
                         if (!pgsql.State.Equals(System.Data.ConnectionState.Open))
                         {
                             Console.WriteLine("Reconnecting DB");
-                            pgsql = OpenDbConnection("Server=db;Username=postgres;Password=postgres;");
+                            pgsql = OpenDbConnection(pgsql_conn);
                         }
                         else
                         { // Normal +1 vote requested
