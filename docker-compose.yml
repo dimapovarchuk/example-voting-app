@@ -1,6 +1,12 @@
 # version is now using "compose spec"
 # v2 and v3 are now combined!
 # docker-compose v1.27+ required
+volumes:
+  db-data:
+
+networks:
+  front-tier:
+  back-tier:
 
 services:
   vote:
@@ -10,6 +16,8 @@ services:
     depends_on:
       redis:
         condition: service_healthy 
+    environment:
+      REDIS_HOST: "redis"
     volumes:
      - ./vote:/app
     ports:
@@ -25,6 +33,8 @@ services:
     depends_on:
       db:
         condition: service_healthy 
+    environment:
+      DB_HOST: "db"
     volumes:
       - ./result:/app
     ports:
@@ -35,12 +45,16 @@ services:
       - back-tier
 
   worker:
-    image: linuxdima/worker
+    build:
+      context: linuxdima/worker
     depends_on:
       redis:
         condition: service_healthy 
       db:
-        condition: service_healthy 
+        condition: service_healthy
+    environment:
+      REDIS_HOST: "redis"
+      DB_HOST: "db"
     networks:
       - back-tier
 
@@ -68,10 +82,3 @@ services:
       interval: "5s"
     networks:
       - back-tier
-
-volumes:
-  db-data:
-
-networks:
-  front-tier:
-  back-tier:
