@@ -1,13 +1,14 @@
 name: Upgrade to new version
 on: 
   workflow_dispatch: 
-  push:
-    branches: [ main ]
+  workflow_run: 
+    workflows: ["Publish Vote to Dockerhub", "Publish Result to Dockerhub", "Publish Worker to Dockerhub"]
+    types: 
+    - completed
 
 jobs:
-  build:
+  aboba:
     runs-on: ubuntu-latest
-
     steps:
       - name: Run the upgrade script
         uses: garygrossgarten/github-action-ssh@release

@@ -1,8 +1,9 @@
 name: Publish Vote to Dockerhub
 on: 
-  push:
-   branches: [ main ]
   workflow_dispatch:
+  push: 
+    paths: 
+      - 'vote/**'
 jobs:
   build:
     runs-on: ubuntu-latest

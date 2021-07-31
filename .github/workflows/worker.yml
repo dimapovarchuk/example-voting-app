@@ -1,8 +1,9 @@
 name: Publish Worker to Dockerhub
 on: 
-  push:
-   branches: [ main ]
   workflow_dispatch:
+  push: 
+    paths: 
+      - 'worker/**'
 jobs:
   build:
     runs-on: ubuntu-latest

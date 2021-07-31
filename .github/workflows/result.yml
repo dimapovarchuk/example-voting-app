@@ -1,8 +1,9 @@
 name: Publish Result to Dockerhub
 on: 
-  push:
-   branches: [ main ]
   workflow_dispatch:
+  push: 
+    paths: 
+      - 'result/**'
 jobs:
   build:
     runs-on: ubuntu-latest
