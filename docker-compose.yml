@@ -7,9 +7,11 @@ services:
     image: burynk/vote
     # use python rather than gunicorn for local dev
     command: python app.py
-    depends_on:
-      redis:
-        condition: service_healthy 
+    # depends_on:
+    #   redis:
+    #     condition: service_healthy 
+    environment:
+      REDIS_HOST: "redis"
     volumes:
      - ./vote:/app
     ports:
@@ -22,9 +24,11 @@ services:
     image: burynk/result
     # use nodemon rather than node for local dev
     command: nodemon server.js
-    depends_on:
-      db:
-        condition: service_healthy 
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
+    environment:
+      DB_HOST: "db" 
     volumes:
       - ./result:/app
     ports:
@@ -36,38 +40,41 @@ services:
 
   worker:
     image: burynk/worker
-    depends_on:
-      redis:
-        condition: service_healthy 
+    # depends_on:
+      # redis:
+      #   condition: service_healthy 
       db:
-        condition: service_healthy 
-    networks:
-      - back-tier
-
-  redis:
-    image: redis:5.0-alpine3.10
-    volumes:
-      - "./healthchecks:/healthchecks"
-    healthcheck:
-      test: /healthchecks/redis.sh
-      interval: "5s"
-    ports: ["6379"]
-    networks:
-      - back-tier
-
-  db:
-    image: postgres:9.4
+        condition: service_healthy
     environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-    volumes:
-      - "db-data:/var/lib/postgresql/data"
-      - "./healthchecks:/healthchecks"
-    healthcheck:
-      test: /healthchecks/postgres.sh
-      interval: "5s"
+      REDIS_HOST: "redis"
+      DB_HOST: "db" 
     networks:
       - back-tier
+
+  # redis:
+  #   image: redis:5.0-alpine3.10
+  #   volumes:
+  #     - "./healthchecks:/healthchecks"
+  #   healthcheck:
+  #     test: /healthchecks/redis.sh
+  #     interval: "5s"
+  #   ports: ["6379"]
+  #   networks:
+  #     - back-tier
+
+  # db:
+  #   image: postgres:9.4
+  #   environment:
+  #     POSTGRES_USER: "postgres"
+  #     POSTGRES_PASSWORD: "postgres"
+  #   volumes:
+  #     - "db-data:/var/lib/postgresql/data"
+  #     - "./healthchecks:/healthchecks"
+  #   healthcheck:
+  #     test: /healthchecks/postgres.sh
+  #     interval: "5s"
+  #   networks:
+  #     - back-tier
 
 volumes:
   db-data:
