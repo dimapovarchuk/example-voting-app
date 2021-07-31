@@ -27,7 +27,7 @@ var db_host = process.env.DB_HOST || 'db';
 var pool = new pg.Pool({
   // connectionString: 'postgres://postgres:postgres@db/postgres'
   user: 'vote_user',
-  host: DB_HOST,
+  host: db_host,
   database: 'vote',
   password: 'password',
   port: 5432,
