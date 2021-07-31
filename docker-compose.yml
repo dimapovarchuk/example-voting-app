@@ -4,7 +4,7 @@
 
 services:
   vote:
-    image: burynk/vote
+    image: burynk/vote:latest
     # use python rather than gunicorn for local dev
     command: python app.py
     # depends_on:
@@ -21,7 +21,7 @@ services:
       - back-tier
 
   result:
-    image: burynk/result
+    image: burynk/result:latest
     # use nodemon rather than node for local dev
     command: nodemon server.js
     # depends_on:
@@ -39,7 +39,7 @@ services:
       - back-tier
 
   worker:
-    image: burynk/worker
+    image: burynk/worker:latest
     # depends_on:
       # redis:
       #   condition: service_healthy 
