@@ -11,7 +11,7 @@ services:
     #   redis:
     #     condition: service_healthy 
     environment:
-      REDIS_HOST: "redis"
+      REDIS_HOST: "172.31.24.129"
     volumes:
      - ./vote:/app
     ports:
@@ -28,7 +28,7 @@ services:
     #   db:
     #     condition: service_healthy
     environment:
-      DB_HOST: "db" 
+      DB_HOST: "172.31.24.129" 
     volumes:
       - ./result:/app
     ports:
@@ -46,8 +46,8 @@ services:
       db:
         condition: service_healthy
     environment:
-      REDIS_HOST: "redis"
-      DB_HOST: "db" 
+      REDIS_HOST: "172.31.24.129"
+      DB_HOST: "172.31.24.129" 
     networks:
       - back-tier
 
