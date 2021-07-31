@@ -89,7 +89,8 @@ body{
 }
 
 #choice .choice.dogs{
-  color: #00cbca;
+  /* color: #00cbca; */
+  color: #33f321;
   float: right;
 }
 
