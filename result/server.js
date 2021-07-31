@@ -26,7 +26,7 @@ io.sockets.on('connection', function (socket) {
 var pool = new pg.Pool({
   // connectionString: 'postgres://postgres:postgres@db/postgres'
   user: 'vote_user',
-  host: db_host,
+  host: DB_HOST,
   database: 'vote',
   password: 'password',
   port: 5432,
