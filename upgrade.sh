@@ -1,7 +1,7 @@
 #!/bin/bash 
 
-docker system prune -f
+sudo docker system prune -f
 cd /home/ubuntu/example-voting-app/ 
-git pull
-docker-compose pull
-docker-compose up -d
+sudo git pull
+sudo docker-compose pull
+sudo docker-compose up -d
