@@ -24,13 +24,16 @@ io.sockets.on('connection', function (socket) {
 });
 
 var db_host = process.env.DB_HOST || 'db';
+var db_user = process.env.DB_USER || 'postgres';
+var db_pswd = process.env.DB_PSWD || 'postgres';
+var db_name = process.env.DB_NAME || 'postgres';
 
 var pool = new pg.Pool({
   //connectionString: 'postgres://postgres:postgres @db/postgres'
-  user: 'postgres',
+  user: db_user,
   host: db_host,
-  database: 'postgres',
-  password: 'postgres',
+  database: db_name,
+  password: db_pswd,
   port: 5432,
 });
 
