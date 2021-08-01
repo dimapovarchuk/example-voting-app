@@ -1,5 +1,4 @@
-name: Publish Docker image
-
+name: Publish Vote to Dockerhub
 on:
   workflow_dispatch:
   push:
