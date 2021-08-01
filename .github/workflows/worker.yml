@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Publish Worker to Dockerhub
 
 on:
   workflow_dispatch:
