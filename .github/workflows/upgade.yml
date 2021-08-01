@@ -7,7 +7,7 @@ on:
     - completed
 
 jobs:
-  aboba:
+  upgrade:
     runs-on: ubuntu-latest
     steps:
       - name: Run the upgrade script
