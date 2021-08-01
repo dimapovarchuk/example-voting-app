@@ -15,7 +15,7 @@ jobs:
         with:
           command: sudo bash /home/ubuntu/example-voting-app/upgrade.sh
           host: ${{ secrets.HOST }}
-          username: ubuntu
+          username: terraform
           privateKey: ${{ secrets.PRIVATE_KEY}}
         env:
           CI: true
