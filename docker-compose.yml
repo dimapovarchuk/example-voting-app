@@ -10,7 +10,7 @@ networks:
 
 services:
   vote:
-    image: linuxdima/vote
+    image: linuxdima/vote:latest
     command: python app.py
     environment:
       REDIS_HOST: "172.31.37.14"
@@ -23,7 +23,7 @@ services:
       - back-tier
 
   result:
-    image: linuxdima/result
+    image: linuxdima/result:latest
     command: nodemon server.js
     environment:
       DB_HOST: "172.31.37.14"
@@ -40,7 +40,7 @@ services:
       - back-tier
 
   worker:
-    image: linuxdima/worker   
+    image: linuxdima/worker:latest   
     environment:
       REDIS_HOST: "172.31.37.14"
       DB_HOST: "172.31.37.14"
